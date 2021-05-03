@@ -1,0 +1,186 @@
+{
+  "EDITOR_STATE": {
+    "allProjectFiles": {
+      "2e144c6e-e86f-4876-bc54-0242221a9d97": {
+        "id": "2e144c6e-e86f-4876-bc54-0242221a9d97",
+        "parent": null,
+        "name": "add-db-entry.py",
+        "type": "PYTHON_LAMBDA",
+        "isDirectory": false,
+        "children": [],
+        "isRemovable": true,
+        "filePath": "add-db-entry.py",
+        "cursor": {
+          "lineNumber": 30,
+          "column": 17
+        },
+        "config": {
+          "runtime": "python3.8",
+          "handler": "handler",
+          "timeout": 60,
+          "memory": 128,
+          "layers": [],
+          "name": "add-db-entry"
+        },
+        "triggers": [
+          {
+            "resourceName": "apighistoryApiaddpost",
+            "config": {}
+          }
+        ],
+        "lastUpdated": 1620016791795,
+        "testCases": {
+          "01c749bc-3e1f-40fb-8b73-53dff9a62b4a": {
+            "id": "01c749bc-3e1f-40fb-8b73-53dff9a62b4a",
+            "name": "Test event",
+            "functionId": "2e144c6e-e86f-4876-bc54-0242221a9d97",
+            "event": "{\r\n    \"Name\": \"Kumudika\",\r\n    \"Email\": \"kumudika.customer@some-email-domain.com\",\r\n    \"URL\": \"http://online.business/checkout?cart_id=12345\"\r\n}",
+            "eventTemplate": "hello-world"
+          }
+        }
+      },
+      "ea0f41a3-5e38-47bf-898c-90a1f4a8e926": {
+        "id": "ea0f41a3-5e38-47bf-898c-90a1f4a8e926",
+        "parent": null,
+        "name": "send-email.py",
+        "type": "PYTHON_LAMBDA",
+        "isDirectory": false,
+        "children": [],
+        "isRemovable": true,
+        "filePath": "send-email.py",
+        "cursor": {
+          "lineNumber": 32,
+          "column": 26
+        },
+        "config": {
+          "runtime": "python3.8",
+          "handler": "handler",
+          "timeout": 60,
+          "memory": 128,
+          "layers": [],
+          "name": "send-email"
+        },
+        "triggers": [
+          {
+            "resourceName": "ddbhistory",
+            "config": {
+              "StartingPosition": "LATEST",
+              "BatchSize": "100",
+              "StreamViewType": "NEW_IMAGE"
+            }
+          }
+        ],
+        "lastUpdated": 1610527415991,
+        "customSecurityPolicy": {
+          "Version": "2012-10-17",
+          "Statement": [
+            {
+              "Effect": "Allow",
+              "Resource": "*",
+              "Action": [
+                "ses:SendEmail",
+                "ses:SendRawEmail"
+              ]
+            }
+          ]
+        }
+      }
+    },
+    "openFiles": [
+      "2e144c6e-e86f-4876-bc54-0242221a9d97",
+      "ea0f41a3-5e38-47bf-898c-90a1f4a8e926"
+    ],
+    "currentFileId": "2e144c6e-e86f-4876-bc54-0242221a9d97",
+    "resources": {
+      "ddbhistory": {
+        "name": "ddbhistory",
+        "type": "DynamoDB",
+        "config": {
+          "mode": 0,
+          "table": {
+            "arn": "",
+            "name": "history",
+            "partitionKey": "Name",
+            "partitionKeyType": "S",
+            "hasSortKey": false,
+            "sortKey": "",
+            "sortKeyType": "S",
+            "payPerRequest": true,
+            "mode": 0
+          }
+        }
+      },
+      "apighistoryApiaddpost": {
+        "name": "apighistoryApiaddpost",
+        "type": "API_GATEWAY",
+        "config": {
+          "apiType": 1,
+          "apiMode": 0,
+          "apiName": "history-api",
+          "endpointType": "EDGE",
+          "resourceMode": 0,
+          "resourceName": "add",
+          "resourcePath": "/add",
+          "restMethod": "POST",
+          "proxyIntegration": false,
+          "enableCORS": true,
+          "stageMode": 0,
+          "stageName": "prod",
+          "mode": 0
+        }
+      },
+      "ses-kumudika@adroitlogic.com": {
+        "name": "ses-kumudika@adroitlogic.com",
+        "type": "SES",
+        "config": {
+          "selectedIdentity": "kumudika@adroitlogic.com"
+        }
+      }
+    },
+    "customTemplate": {
+      "syntax": "JSON",
+      "overrideDefault": false,
+      "dialect": "CloudFormation",
+      "definitions": null
+    },
+    "envVariables": [
+      {
+        "lambdaId": "all",
+        "varKey": "SIGMA_AWS_ACC_ID",
+        "varValue": null,
+        "shouldPersist": false,
+        "displayOnly": false,
+        "editable": false
+      }
+    ],
+    "packageJSON": {
+      "dependencies": {
+        "boto3": {
+          "name": "boto3",
+          "language": "python",
+          "version": "1.16.43",
+          "dev": true,
+          "notRemovable": false
+        }
+      }
+    }
+  },
+  "PROJECT_META": {
+    "sigmaVersion": "1.7.4",
+    "projectName": "abandoned-cart-alert-system",
+    "projectDescription": "Send automatic reminders to abandoned Shopping Cart owners from your online store",
+    "projectVersion": "1.0.0",
+    "projectRegion": "us-east-1",
+    "platform": "AWS",
+    "language": "python",
+    "platformRegions": {},
+    "lastSave": 1620016802017
+  },
+  "VCS_STATE": {
+    "provider": "GitHub",
+    "repo": {
+      "name": "abandoned-cart-alert-system",
+      "url": "https://github.com/Kumudikatest/abandoned-cart-alert-system"
+    }
+  }
+}
